@@ -3,17 +3,27 @@ package com.example.springit.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Comment {
+public class Comment extends Auditable {
 
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String body;
 	
+	@ManyToOne
+	private Link link;
+	
 	//link
 	public Comment() {
+	}
+
+	public Comment(String body, Link link) {
+		super();
+		this.body = body;
+		this.link = link;
 	}
 
 	public Long getId() {
@@ -30,6 +40,14 @@ public class Comment {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public Link getLink() {
+		return link;
+	}
+
+	public void setLink(Link link) {
+		this.link = link;
 	}
 
 	@Override
